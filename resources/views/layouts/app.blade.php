@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md sticky-top navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -38,19 +38,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">HAMER</a>
+                            <a class="nav-link" href="#">Shoes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRODUCT2</a>
+                            <a class="nav-link" href="#">Sweaters</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRODUCT3</a>
+                            <a class="nav-link" href="#">Pants</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRODUCT4</a>
+                            <a class="nav-link" href="#">T-shirts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">PRODUCT5</a>
+                            <a class="nav-link" href="#">Sunglasses</a>
                         </li>
                     </ul>
 
