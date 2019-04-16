@@ -38,19 +38,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Shoes</a>
+                            <a class="nav-link" href="#">Heren</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sweaters</a>
+                            <a class="nav-link" href="#">Dames</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pants</a>
+                            <a class="nav-link" href="#">Kinderen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">T-shirts</a>
+                            <a class="nav-link" href="#">Zonnebrillen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sunglasses</a>
+                            <a class="nav-link" href="#">Horloges</a>
                         </li>
                     </ul>
 
@@ -59,11 +59,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Aanmelden') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registreren') }}</a>
                         </li>
                         @endif
                         @else
