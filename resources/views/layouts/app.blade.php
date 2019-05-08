@@ -36,23 +36,23 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Heren</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Dames</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Kinderen</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Zonnebrillen</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Horloges</a>
-                        </li>
-                    </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="producten/products.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorieën
+                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('category.index') }}">categorieën</a>
+                        <div class="dropdown-divider"></div>
+                        @foreach($categories as $category)
+                            <a class="dropdown-item" href="/category/{{ $category->id }}">{{  $category->name  }}</a>
+                        @endforeach
+                    </div>
+        </div>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

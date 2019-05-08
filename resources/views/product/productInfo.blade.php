@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <h1>HUTS</h1>
+        <h1>{{  $category->name  }}</h1>
     </div>
     <div class="row">
         @foreach($products as $product)
@@ -12,7 +12,7 @@
                 <div class="card-header">
                     {{ $product->name }}
                 </div>
-                <img class="card-img-top img-fluid productImg" src="img/{{ $product->image }}" alt="Card image cap">
+                <img class="card-img-top img-fluid productImg" src="{{ asset('img/' . $product->image) }}" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">{{ $product->description }}</p>
                     <div class="d-flex justify-content-between align-items-center">
