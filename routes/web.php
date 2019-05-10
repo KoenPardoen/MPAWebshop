@@ -16,3 +16,5 @@ Auth::routes();
 Route::resource('/home', 'HomeController');
 Route::resource('/', "ProductController");
 Route::resource('/category', "CategoryController");
+
+Route::resource('/product', "ProductController");

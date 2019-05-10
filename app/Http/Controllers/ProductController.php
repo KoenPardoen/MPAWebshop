@@ -50,7 +50,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('product.productInfo')->with([
+                'product' => $product,
+                'categories' => $categories,
+            ]);
     }
 
     /**

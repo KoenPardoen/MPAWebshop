@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md sticky-top navbar-light navbar-laravel">
+        <nav  class="navbar navbar-expand-md sticky-top navbar-light navbar-laravel" id="navbarColor01">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -56,6 +56,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
