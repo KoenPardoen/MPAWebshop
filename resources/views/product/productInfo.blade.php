@@ -20,9 +20,10 @@
                         </blockquote>
                     </div>
                 </div>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Toevoegen aan <i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="col-6 col-md-4">
-                <img src="{{ asset('img/' . $product->image) }}" class="img-fluid" alt="Product image">
+                <img src="{{ asset('img/' . $product->image) }}" class="img-fluid rounded" alt="Product image">
             </div>
         </div>
     </div>

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\ShoppingCart;
+use App\Http\Custom\Cart;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
+    private $cart;
+
+    public function __construct()
+    {
+        $this->cart = new Cart();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +22,11 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
+        $cart = $this->cart->show();
+        
+        //nu moet je de product informatie uitlezen, want in de cart staat enkel het id
+
+
         return view("shoppingCart.index");
     }
 
@@ -24,7 +37,11 @@ class ShoppingCartController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $cart[] = array(
+            "id" => $product[0]->id
+        );
+
     }
 
     /**
