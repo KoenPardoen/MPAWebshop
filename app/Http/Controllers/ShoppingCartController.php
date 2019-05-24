@@ -35,12 +35,9 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add(Request $request, $id, $amount)
     {
-        $products = Product::all();
-        $cart[] = array(
-            "id" => $product[0]->id
-        );
+        $this->cart->add($id, $amount);
 
     }
 

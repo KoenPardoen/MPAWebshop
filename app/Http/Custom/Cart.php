@@ -4,25 +4,40 @@ namespace App\Http\Custom;
 
 class Cart
 {
-    private $cart;
-
+    private $cart = array();
+    
     public function __construct()
     {
-        if (!session('cart')) {
+        if (session('cart')) {
             $this->cart = session('cart');
-        } else {
-            $this->cart = array();
         }
     }
 
     public function show()
     {
+        $itemsCart = $request->session()->all();
         return $this->cart;
     }
-
-    public function add($product, $amount)
+    /**
+     * Retrieve product from the database and
+     * add id, product and price to the session
+     */
+    public function add($id, $quantity)
     {
-        $this->cart[$product];
+        $product = Product::find($id);
+
+        if ($product != null) {
+            $cartProduct = array(
+                "id" => $product->id,
+                "quantity" => $quantity
+                // "product" => $product->name,
+                // "price" => $product->amount
+            );
+        } else {
+
+        }
+      
+        $this->cart[$id];
         
         // session('cart') = $this->cart;
     }
