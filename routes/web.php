@@ -17,5 +17,6 @@ Route::resource('/home', 'HomeController');
 Route::resource('/', "ProductController");
 Route::resource('/category', "CategoryController");
 Route::resource('/shoppingcart', "ShoppingCartController");
+Route::post('/shoppingcart/add/{id}', "ShoppingCartController@add");
 
 Route::resource('/product', "ProductController");

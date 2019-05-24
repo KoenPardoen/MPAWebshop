@@ -35,10 +35,13 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request, $id, $amount)
+    public function add(Request $request, $id, $amount=1)
     {
-        $this->cart->add($id, $amount);
+        var_dump(session('cart'));
 
+        $this->cart->add($id, $amount);
+        
+        dd(session('cart'));
     }
 
     /**

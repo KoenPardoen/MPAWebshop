@@ -2,28 +2,22 @@
 
 namespace App\Http\Custom;
 
+use App\Product;
+
 class Cart
 {
-    private $cart = array();
-    
-    public function __construct()
-    {
-        if (session('cart')) {
-            $this->cart = session('cart');
-        }
-    }
-
     public function show()
     {
-        $itemsCart = $request->session()->all();
-        return $this->cart;
+        return session('cart');
     }
     /**
      * Retrieve product from the database and
-     * add id, product and price to the session
+     * add id and amount to the session
      */
     public function add($id, $quantity)
     {
+        $cart = session('cart');
+
         $product = Product::find($id);
 
         if ($product != null) {
@@ -33,13 +27,12 @@ class Cart
                 // "product" => $product->name,
                 // "price" => $product->amount
             );
+            $cart[] = $cartProduct;
         } else {
 
         }
-      
-        $this->cart[$id];
-        
-        // session('cart') = $this->cart;
+
+        session()->put('cart', $cart);
     }
 
     public function remove($product, $amount)
