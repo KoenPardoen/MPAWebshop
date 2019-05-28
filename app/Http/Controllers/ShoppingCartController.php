@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\ShoppingCart;
+use App\Product;
 use App\Http\Custom\Cart;
 use Illuminate\Http\Request;
 
 class ShoppingCartController extends Controller
 {
-    private $cart;
+    public $cart;
 
     public function __construct()
     {
@@ -20,14 +21,19 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $cart = $this->cart->show();
-        
-        //nu moet je de product informatie uitlezen, want in de cart staat enkel het id
+    
+        //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
+        foreach ($cart as $item) {
+            $product = Product::find($item['id']);
+            $product['quantity'] = $item['quantity'];
+            $products[] = $product;
+        }
 
+        return view("shoppingCart.index", ['products' => $products]);
 
-        return view("shoppingCart.index");
     }
 
     /**
@@ -37,11 +43,11 @@ class ShoppingCartController extends Controller
      */
     public function add(Request $request, $id, $amount=1)
     {
-        var_dump(session('cart'));
+        // var_dump(session('cart'));
 
         $this->cart->add($id, $amount);
-        
-        dd(session('cart'));
+
+        return redirect()->route('shoppingcart.index');        
     }
 
     /**

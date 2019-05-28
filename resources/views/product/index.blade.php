@@ -18,8 +18,12 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="/product/{{ $product->id }}" class="btn btn-sm btn-outline-secondary">Detail</a>
-                            <button type="button" class="btn btn-sm btn-outline-secondary"><i
-                                    class="fas fa-shopping-cart"></i></button>
+                            <form action="{{action('ShoppingCartController@add', ['id' => $product->id])}}"
+                                method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-outline-secondary"><i
+                                        class="fas fa-shopping-cart"></i></button>
+                            </form>
                         </div>
                         <small class="text-muted"><span>&#8364;</span> {{ $product->amount }}</small>
                     </div>

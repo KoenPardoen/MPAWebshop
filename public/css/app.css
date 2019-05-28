@@ -17,6 +17,15 @@ table .shoppingCartTable {
   margin-top: 10px !important;
 }
 
+.emptyAlert {
+  margin-top: calc(50vh - 250px) !important;
+  width: auto !important;
+}
+
+.quantityCart {
+  width: 55px !important;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

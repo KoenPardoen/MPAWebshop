@@ -1,36 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
+<?php 
+    $cartItems = session('cart');
+?>
 <div class="container">
+    @if(Session::has('cart'))
     <div class="row justify-content-center">
         <h1>Winkelmand</h1>
         <table class="table shoppingCartTable">
             <thead>
                 <tr>
-                    <th scope="col">Ordernummer</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
                     <th scope="col">Prijs</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($products as $product)
                 <tr>
-                    <td>192738</td>
-                    <td>Trui Hilfiger M</td>
-                    <td>99,80</td>
+                    <td> {{ $product['id'] }}</td>
+                    <td> {{ $product['name'] }}</td>
+                    <td>  <input type="number" value="{{ $product['quantity'] }}" class="quantityCart form-control" id="pwd"></td>
+                    <td> {{ $product['amount'] }}</td>
                 </tr>
-                <tr>
-                    <td>192712</td>
-                    <td>Trui DAILY PAPER V</td>
-                    <td>120,00</td>
-                </tr>
-                <tr>
-                    <td>152432</td>
-                    <td>Ray-ban heren</td>
-                    <td>220,00</td>
-                </tr>
+            @endforeach
             </tbody>
         </table>
-
+        </div>
     </div>
+        @else
+        <div class="row justify-content-center">
+            <h1>Winkelmand</h1>
+        </div>
+        <div class="emptyAlert  alert alert-info" role="alert">
+            Er zit niks in je winkelmandje
+        </div>
+        @endif
+
 </div>
 @endsection

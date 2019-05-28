@@ -6,6 +6,8 @@ use App\Product;
 
 class Cart
 {
+    public $cart = [];
+
     public function show()
     {
         return session('cart');
@@ -24,15 +26,14 @@ class Cart
             $cartProduct = array(
                 "id" => $product->id,
                 "quantity" => $quantity
-                // "product" => $product->name,
-                // "price" => $product->amount
             );
             $cart[] = $cartProduct;
         } else {
-
+            // redirect to a error page
         }
 
         session()->put('cart', $cart);
+        return view("shoppingCart.index");
     }
 
     public function remove($product, $amount)

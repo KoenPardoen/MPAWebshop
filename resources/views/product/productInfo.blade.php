@@ -10,7 +10,7 @@
             <div class="col-12 col-sm-6 col-md-7">
                 <div class="card">
                     <div class="card-header">
-                    {{ $product->name }}
+                        {{ $product->name }}
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
@@ -20,7 +20,12 @@
                         </blockquote>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary btn-lg btn-block">Toevoegen aan <i class="fas fa-shopping-cart"></i></button>
+                <form action="{{action('ShoppingCartController@add', ['id' => $product->id])}}"
+                                method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-secondary btn-lg btn-block">Toevoegen aan <i
+                                        class="fas fa-shopping-cart"></i></button>
+                            </form>
             </div>
             <div class="col-6 col-md-4">
                 <img src="{{ asset('img/' . $product->image) }}" class="img-fluid rounded" alt="Product image">
