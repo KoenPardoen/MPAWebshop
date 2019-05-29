@@ -6,12 +6,18 @@ use App\Product;
 
 class Cart
 {
-    public $cart = [];
+    public $totalPrice = 0;
 
     public function show()
     {
+
         return session('cart');
     }
+
+    public function getTotalPrice(){
+        return $this->totalPrice;
+    }
+
     /**
      * Retrieve product from the database and
      * add id and amount to the session
@@ -19,16 +25,14 @@ class Cart
     public function add($id, $quantity=1)
     {
         $cart = session('cart');
-
+        $ttlPrice = $this->totalPrice;
         $product = Product::find($id);
         
         if ($product != null) {
             $found = false;
             if (is_array($cart)) {
                 foreach ($cart as $key => $item) {
-                    // komt niet in de if statement
                     if ($item['id'] == $id) {
-                        echo $cart[$key]['id'];
                         $found = true;
                         $cart[$key]['quantity']++;
                     }
@@ -37,8 +41,10 @@ class Cart
             if ($found === false) {
                 $cartProduct = array(
                     "id" => $product->id,
-                    "quantity" => $quantity
+                    "quantity" => $quantity,
+                    $this->totalPrice => $product->amount
                 );
+               
                 $cart[] = $cartProduct;
             } 
         }

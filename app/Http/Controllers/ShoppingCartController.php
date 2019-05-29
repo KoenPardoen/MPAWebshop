@@ -14,6 +14,7 @@ class ShoppingCartController extends Controller
     public function __construct()
     {
         $this->cart = new Cart();
+
     }
 
     /**
@@ -26,6 +27,7 @@ class ShoppingCartController extends Controller
         //session leeg halen
         //$request->session()->flush();
 
+        $totalPrice = $this->cart->getTotalPrice();
         $cart = $this->cart->show();
         $products = [];
 

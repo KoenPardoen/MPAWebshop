@@ -22,14 +22,12 @@
                 <tr>
                     <td> {{ $product['id'] }}</td>
                     <td> {{ $product['name'] }}</td>
-                    <td>  <input type="number" onchange="quantity()" value="{{ $product['quantity'] }}" class="quantityCart form-control" id="pwd"></td>
+                    <td>  <input type="number" onchange="quantity(this)" value="{{ $product['quantity'] }}" class="quantityCart form-control" id="pwd"></td>
                     <td> {{ $product['amount'] }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-        </div>
-    </div>
         @else
         <div class="row justify-content-center">
             <h1>Winkelmand</h1>
@@ -38,6 +36,7 @@
             Er zit niks in je winkelmandje
         </div>
         @endif
+    </div>    
 </div>
 <script type="text/javascript" src="{{ URL::asset('js/shoppingCart.js') }}"></script>
 @endsection
