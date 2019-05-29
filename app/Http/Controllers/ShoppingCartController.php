@@ -23,15 +23,20 @@ class ShoppingCartController extends Controller
      */
     public function index(Request $request)
     {
-        $cart = $this->cart->show();
-    
-        //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
-        foreach ($cart as $item) {
-            $product = Product::find($item['id']);
-            $product['quantity'] = $item['quantity'];
-            $products[] = $product;
-        }
+        //session leeg halen
+        //$request->session()->flush();
 
+        $cart = $this->cart->show();
+        $products = [];
+
+        if (is_array($cart)) {
+            //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
+            foreach ($cart as $item) {
+                $product = Product::find($item['id']);
+                $product['quantity'] = $item['quantity'];
+                $products[] = $product;
+            }
+        }
         return view("shoppingCart.index", ['products' => $products]);
 
     }
@@ -41,11 +46,11 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add(Request $request, $id, $amount=1)
+    public function add(Request $request, $id)
     {
-        // var_dump(session('cart'));
-
-        $this->cart->add($id, $amount);
+        // var_dump(session('cart'));        
+        
+        $this->cart->add($id);
 
         return redirect()->route('shoppingcart.index');        
     }
@@ -106,4 +111,3 @@ class ShoppingCartController extends Controller
         //
     }
 }
-
