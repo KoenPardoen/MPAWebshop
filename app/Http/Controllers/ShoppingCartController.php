@@ -26,8 +26,6 @@ class ShoppingCartController extends Controller
     {
         //session leeg halen
         //$request->session()->flush();
-
-        $totalPrice = $this->cart->getTotalPrice();
         $cart = $this->cart->show();
         $products = [];
 
@@ -63,9 +61,9 @@ class ShoppingCartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -86,18 +84,6 @@ class ShoppingCartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(ShoppingCart $shoppingCart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ShoppingCart $shoppingCart)
     {
         //
     }

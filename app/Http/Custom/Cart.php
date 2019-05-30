@@ -6,16 +6,11 @@ use App\Product;
 
 class Cart
 {
-    public $totalPrice = 0;
 
     public function show()
     {
 
         return session('cart');
-    }
-
-    public function getTotalPrice(){
-        return $this->totalPrice;
     }
 
     /**
@@ -25,24 +20,23 @@ class Cart
     public function add($id, $quantity=1)
     {
         $cart = session('cart');
-        $ttlPrice = $this->totalPrice;
         $product = Product::find($id);
-        
+
+        // add's a product or increases quantity       
         if ($product != null) {
             $found = false;
             if (is_array($cart)) {
                 foreach ($cart as $key => $item) {
                     if ($item['id'] == $id) {
                         $found = true;
-                        $cart[$key]['quantity']++;
+                        $cart[$key]['quantity'] += $quantity;
                     }
                 }
             }
             if ($found === false) {
                 $cartProduct = array(
                     "id" => $product->id,
-                    "quantity" => $quantity,
-                    $this->totalPrice => $product->amount
+                    "quantity" => $quantity
                 );
                
                 $cart[] = $cartProduct;

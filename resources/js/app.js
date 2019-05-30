@@ -28,6 +28,22 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+
+$(".quintityID").on("change",function(){
+    console.log("slik mijn pik ayyoub");
+    $.ajax({
+        method: 'POST', // Type of response and matches what we said in the route
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, 
+        url: '/shoppingcart/update', // This is the url we gave in the route
+        data: {
+            'quantity' : $(this).val(),
+            'id' : $(this).data('id') 
+        },
+        success:function(data){
+            console.log(data);
+        }
+    });
+}
+);

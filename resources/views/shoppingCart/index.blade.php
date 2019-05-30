@@ -22,7 +22,7 @@
                 <tr>
                     <td> {{ $product['id'] }}</td>
                     <td> {{ $product['name'] }}</td>
-                    <td>  <input type="number" onchange="quantity(this)" value="{{ $product['quantity'] }}" class="quantityCart form-control" id="pwd"></td>
+                    <td>  <input type="number" data-val="{{ $product['quantity'] }}" data-id="{{ $product['id'] }}" value="{{ $product['quantity'] }}" class="quintityID quantityCart form-control"></td>
                     <td> {{ $product['amount'] }}</td>
                 </tr>
             @endforeach
@@ -38,5 +38,5 @@
         @endif
     </div>    
 </div>
-<script type="text/javascript" src="{{ URL::asset('js/shoppingCart.js') }}"></script>
+
 @endsection
