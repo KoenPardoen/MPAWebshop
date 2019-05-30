@@ -29,7 +29,10 @@ class Cart
                 foreach ($cart as $key => $item) {
                     if ($item['id'] == $id) {
                         $found = true;
-                        $cart[$key]['quantity'] += $quantity;
+                        $cart[$key]['quantity'] += (int)$quantity;
+                        if(!($cart[$key]['quantity'] >= 0)){
+                            unset($cart[$key]);
+                        }
                     }
                 }
             }
@@ -49,7 +52,6 @@ class Cart
     public function remove($product, $amount)
     {
 
-        // session('cart') = $this->cart;
     }
 
     public function reset()

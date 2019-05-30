@@ -63,7 +63,7 @@ class ShoppingCartController extends Controller
      */
     public function update(Request $request)
     {
-        return $request;
+        $this->cart->add($request->id, $request->quantity);
     }
 
     /**

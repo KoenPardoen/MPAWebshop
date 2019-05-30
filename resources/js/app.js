@@ -30,7 +30,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 
 $(".quintityID").on("change",function(){
-    console.log("slik mijn pik ayyoub");
+
+    console.log("test");
+    var addedQuantity = $(this).val()-$(this).data('val');
+    $(this).data('val', $(this).val());
+
+    if($(this).val() <= 0){
+        $("#pr-"+ $(this).data("id")).remove();
+    }
+
     $.ajax({
         method: 'POST', // Type of response and matches what we said in the route
         headers: {
@@ -38,7 +46,7 @@ $(".quintityID").on("change",function(){
         }, 
         url: '/shoppingcart/update', // This is the url we gave in the route
         data: {
-            'quantity' : $(this).val(),
+            'quantity' : addedQuantity,
             'id' : $(this).data('id') 
         },
         success:function(data){

@@ -19,7 +19,7 @@
             </thead>
             <tbody>
             @foreach($products as $product)
-                <tr>
+                <tr id="pr-{{ $product['id'] }}">
                     <td> {{ $product['id'] }}</td>
                     <td> {{ $product['name'] }}</td>
                     <td>  <input type="number" data-val="{{ $product['quantity'] }}" data-id="{{ $product['id'] }}" value="{{ $product['quantity'] }}" class="quintityID quantityCart form-control"></td>
