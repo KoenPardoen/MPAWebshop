@@ -34,9 +34,11 @@ class ShoppingCartController extends Controller
             foreach ($cart as $item) {
                 $product = Product::find($item['id']);
                 $product['quantity'] = $item['quantity'];
+                $product['productTtl'] = $product['amount'] * $product['quantity'];
                 $products[] = $product;
             }
         }
+        // $product['cartTtl'] += $product['productTtl'];
         return view("shoppingCart.index", ['products' => $products]);
 
     }
@@ -51,7 +53,7 @@ class ShoppingCartController extends Controller
         // var_dump(session('cart'));        
         
         $this->cart->add($id);
-
+        
         return redirect()->route('shoppingcart.index');        
     }
 
@@ -63,7 +65,7 @@ class ShoppingCartController extends Controller
      */
     public function update(Request $request)
     {
-        $this->cart->add($request->id, $request->quantity);
+        $this->cart->add($request->id, $request->quantity, $request->productTtl);
     }
 
     /**

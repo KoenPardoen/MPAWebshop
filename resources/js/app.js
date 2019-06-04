@@ -30,8 +30,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 
 $(".quintityID").on("change",function(){
-
-    console.log("test");
     var addedQuantity = $(this).val()-$(this).data('val');
     $(this).data('val', $(this).val());
 
@@ -46,11 +44,12 @@ $(".quintityID").on("change",function(){
         }, 
         url: '/shoppingcart/update', // This is the url we gave in the route
         data: {
+            'id' : $(this).data('id'), 
             'quantity' : addedQuantity,
-            'id' : $(this).data('id') 
+            'productTtl' : $(this).data('productTtl')
         },
         success:function(data){
-            console.log(data);
+            location.reload(true);
         }
     });
 }

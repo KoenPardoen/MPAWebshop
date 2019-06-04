@@ -23,11 +23,12 @@
                     <td> {{ $product['id'] }}</td>
                     <td> {{ $product['name'] }}</td>
                     <td>  <input type="number" data-val="{{ $product['quantity'] }}" data-id="{{ $product['id'] }}" value="{{ $product['quantity'] }}" class="quintityID quantityCart form-control"></td>
-                    <td> {{ $product['amount'] }}</td>
+                    <td> {{ $product['productTtl'] }}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+        <h1>{{ $product['productTtl'] }}</h1>
         @else
         <div class="row justify-content-center">
             <h1>Winkelmand</h1>
