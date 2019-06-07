@@ -43,7 +43,7 @@
         <div class="container">
         <div class="row">
         <div class="col align-self-start">
-            <button type="button" class=".float-left btn btn-outline-info">Bestellen</button>
+            <a href="{{ route('order.index') }}" class="btn btn-outline-info">Bestellen</a>
         </div>
         <div class="col align-self-start">
             <h2 class="float-right">{{ $cartTotalPrice }}</h2>

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
+use Auth;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class OrderController extends Controller
 {
@@ -14,11 +18,12 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $users = User::all();
         if (Auth::check())
         {
-            console.log("you're logged in");
+            return view("order.index", ['users' => $users]);
         } else{
-            console.log("loggin first");
+            return view("layouts.loginError");
         }
     }
 
