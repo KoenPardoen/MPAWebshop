@@ -6,11 +6,18 @@ use App\Order;
 use App\User;
 use Auth;
 use App\Product;
+use App\Http\Custom\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class OrderController extends Controller
 {
+    public $cart;
+
+    public function __construct()
+    {
+        $this->cart = new Cart();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +25,25 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $user = Auth::user();
+        $cart = $this->cart->show();
+        $products = [];
+        $cartTotalPrice = 0;
+
         if (Auth::check())
-        {
-            return view("order.index", ['users' => $users]);
-        } else{
+        {   
+            if (is_array($cart)) {
+                //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
+                foreach ($cart as $item) {
+                    $product = Product::find($item['id']);
+                    $product['quantity'] = $item['quantity'];
+                    $product['productTtl'] = $product['amount'] * $product['quantity'];
+                    $cartTotalPrice += $product['productTtl'];
+                    $products[] = $product;
+                }
+            }
+            return view("orders.index", ['user' => $user, 'products' => $products, 'cartTotalPrice' => $cartTotalPrice]);
+        } else {
             return view("layouts.loginError");
         }
     }

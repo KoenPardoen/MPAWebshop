@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>oops!</h1>
-    <p>Je bent niet ingelogd, log eerst in of registreer je om een bestelling af te ronden</p>
+    <div class="row justify-content-center" >
+        <div class="alert alert-danger" role="alert">
+            <h1>oops!</h1>
+            <p>eerst inloggen kut</p>
+            <img class="card-img-top img-fluid productImg" src="img/searching.jpg" alt="picture">
+        </div>
+    </div>
 </div>
 @endsection

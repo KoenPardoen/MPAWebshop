@@ -24,7 +24,7 @@
                     <td> {{ $product['id'] }}</td>
                     <td> {{ $product['name'] }}</td>
                     <td>  <input type="number" data-val="{{ $product['quantity'] }}" data-id="{{ $product['id'] }}" value="{{ $product['quantity'] }}" class="quintityID quantityCart form-control"></td>
-                    <td> {{ $product['productTtl'] }} </td>
+                    <td> &euro;{{ $product['productTtl'] }} </td>
                     <td>
                         <form action="{{ action('ShoppingCartController@destroy', ['id' => $product->id]) }}" method="POST">    
                             @method('DELETE')
@@ -46,7 +46,7 @@
             <a href="{{ route('order.index') }}" class="btn btn-outline-info">Bestellen</a>
         </div>
         <div class="col align-self-start">
-            <h2 class="float-right">{{ $cartTotalPrice }}</h2>
+            <h2 class="float-right">&euro;{{ $cartTotalPrice }}</h2>
         </div>
         </div>
         @endif

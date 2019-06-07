@@ -41,7 +41,6 @@ class ShoppingCartController extends Controller
         }
         // $product['cartTtl'] += $product['productTtl'];
         return view("shoppingCart.index", ['products' => $products, 'cartTotalPrice' => $cartTotalPrice]);
-
     }
 
     /**
