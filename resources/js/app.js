@@ -35,6 +35,20 @@ $(".quintityID").on("change",function(){
 
     if($(this).val() <= 0){
         $("#pr-"+ $(this).data("id")).remove();
+        $.ajax({
+            method: 'POST', // Type of response and matches what we said in the route
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }, 
+            url: '/shoppingcart/destroy', // This is the url we gave in the route
+            data: {
+                'id' : $(this).data('id'), 
+                'quantity' : addedQuantity,
+                'productTtl' : $(this).data('productTtl')
+            }
+        }).done(function(data){
+           window.location = window.location;
+        });
     }
 
     $.ajax({
@@ -47,10 +61,9 @@ $(".quintityID").on("change",function(){
             'id' : $(this).data('id'), 
             'quantity' : addedQuantity,
             'productTtl' : $(this).data('productTtl')
-        },
-        success:function(data){
-            location.reload(true);
         }
+    }).done(function(data){
+       window.location = window.location;
     });
 }
 );

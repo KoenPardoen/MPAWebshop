@@ -14,7 +14,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check())
+        {
+            console.log("you're logged in");
+        } else{
+            console.log("loggin first");
+        }
     }
 
     /**

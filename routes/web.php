@@ -12,12 +12,15 @@
 */
 
 Auth::routes();
-
-Route::resource('/home', 'HomeController');
+// returns view home
 Route::resource('/', "ProductController");
+
 Route::resource('/category', "CategoryController");
 Route::resource('/shoppingcart', "ShoppingCartController");
+Route::resource('/product', "ProductController");
+Route::resource('/order', "OrderController");
+
+// shoppingCart
 Route::post('/shoppingcart/add/{id}', "ShoppingCartController@add");
 Route::post('/shoppingcart/update', "ShoppingCartController@update");
 
-Route::resource('/product', "ProductController");

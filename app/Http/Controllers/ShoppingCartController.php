@@ -14,7 +14,6 @@ class ShoppingCartController extends Controller
     public function __construct()
     {
         $this->cart = new Cart();
-
     }
 
     /**
@@ -28,6 +27,7 @@ class ShoppingCartController extends Controller
         //$request->session()->flush();
         $cart = $this->cart->show();
         $products = [];
+        $cartTotalPrice = 0;
 
         if (is_array($cart)) {
             //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
@@ -35,11 +35,12 @@ class ShoppingCartController extends Controller
                 $product = Product::find($item['id']);
                 $product['quantity'] = $item['quantity'];
                 $product['productTtl'] = $product['amount'] * $product['quantity'];
+                $cartTotalPrice += $product['productTtl'];
                 $products[] = $product;
             }
         }
         // $product['cartTtl'] += $product['productTtl'];
-        return view("shoppingCart.index", ['products' => $products]);
+        return view("shoppingCart.index", ['products' => $products, 'cartTotalPrice' => $cartTotalPrice]);
 
     }
 
@@ -96,8 +97,10 @@ class ShoppingCartController extends Controller
      * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShoppingCart $shoppingCart)
+    public function destroy($id)
     {
-        //
+        $this->cart->remove($id);
+        
+        return redirect()->route('shoppingcart.index');
     }
 }

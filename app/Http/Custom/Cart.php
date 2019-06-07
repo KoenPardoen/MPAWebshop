@@ -49,9 +49,23 @@ class Cart
         return view("shoppingCart.index");
     }
 
-    public function remove($product, $amount)
+    public function remove($id)
     {
+        $cart = session('cart');
 
+        if (is_array($cart)) {
+            foreach ($cart as $key => $item) {
+                if ($item['id'] == $id) {
+                    array_splice($cart, $key, 1);
+                }
+            }
+        }
+        
+        session()->put('cart', $cart);
+
+        if(count($cart) == 0){
+            session()->forget('cart');
+        }
     }
 
     public function reset()
