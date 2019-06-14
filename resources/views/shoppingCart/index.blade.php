@@ -5,13 +5,13 @@
     $cartItems = session('cart');
 ?>
 <div class="container">
-    @if(Session::has('cart'))
+    @if(count(session('cart', [])))
     <div class="row justify-content-center">
         <h1>Winkelmand</h1>
         <table class="table shoppingCartTable">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">Artikelnummer</th>
                     <th scope="col">Product</th>
                     <th scope="col">Aantal</th>
                     <th scope="col" colspan="2">Prijs</th>

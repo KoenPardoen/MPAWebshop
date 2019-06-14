@@ -41,7 +41,11 @@
                         <p>Email: {{$user->email }} </p>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success">Bestelling afronden</button>
+                <form action="{{action('OrderController@create')}}"
+                    method="put">
+                        @csrf
+                    <button type="submit" class="btn btn-outline-success">Bestelling afronden</button>
+                </form>
             </div>
         </div> 
     </div>

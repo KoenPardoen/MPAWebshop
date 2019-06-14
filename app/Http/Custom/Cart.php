@@ -7,10 +7,23 @@ use App\Product;
 class Cart
 {
 
+    public $cartTotalPrice = 0;
+
     public function show()
     {
-
-        return session('cart');
+        $cart = session('cart',[]);
+        if (count($cart)) {
+            foreach ($cart as $item) {
+                $product = Product::find($item['id']);
+                $product['quantity'] = $item['quantity'];
+                $product['productTtl'] = $product['amount'] * $product['quantity'];
+                $this->cartTotalPrice += $product['productTtl'];
+                $products[] = $product;
+            }
+            return $products;
+        } else {
+            return[];
+        }   
     }
 
     /**
@@ -70,7 +83,6 @@ class Cart
 
     public function reset()
     {
-        $this->cart = [];
-        // session('cart') = $this->cart;
+         session(['cart' =>[]]);
     }
 }

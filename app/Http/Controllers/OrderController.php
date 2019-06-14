@@ -6,6 +6,7 @@ use App\Order;
 use App\User;
 use Auth;
 use App\Product;
+use App\OrderProduct;
 use App\Http\Custom\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -25,23 +26,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $cart = $this->cart->show();
-        $products = [];
-        $cartTotalPrice = 0;
-
         if (Auth::check())
-        {   
-            if (is_array($cart)) {
-                //nu moet je de product informatie uitlezen, want in de cart staat enkel het id 
-                foreach ($cart as $item) {
-                    $product = Product::find($item['id']);
-                    $product['quantity'] = $item['quantity'];
-                    $product['productTtl'] = $product['amount'] * $product['quantity'];
-                    $cartTotalPrice += $product['productTtl'];
-                    $products[] = $product;
-                }
-            }
+        { 
+            $user = Auth::user();
+            $products = $this->cart->show();
+            $cartTotalPrice = $this->cart->cartTotalPrice;
+            
             return view("orders.index", ['user' => $user, 'products' => $products, 'cartTotalPrice' => $cartTotalPrice]);
         } else {
             return view("layouts.loginError");
@@ -55,7 +45,28 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $products = $this->cart->show();
+        $cartTotalPrice = $this->cart->cartTotalPrice;
+
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->total_price = 0;
+        $order->save();
+
+        foreach($products as $product) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->order_id = $order->id;
+
+            $orderProduct->product_id = $product->id;
+            $orderProduct->quantity = $product->quantity;
+            $orderProduct->total_price = $product->productTtl;
+            $order->total_price += $orderProduct->total_price;
+            $orderProduct->save();
+        }
+        $order->save();
+        $this->cart->reset();
+        return redirect('/');
     }
 
     /**
@@ -66,7 +77,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
