@@ -3,6 +3,7 @@
 namespace App\Http\Custom;
 
 use App\Product;
+use App\Http\Controllers\ShoppingCartController;
 
 class Cart
 {
@@ -59,7 +60,7 @@ class Cart
             } 
         }
         session()->put('cart', $cart);
-        return view("shoppingCart.index");
+        
     }
 
     public function remove($id)

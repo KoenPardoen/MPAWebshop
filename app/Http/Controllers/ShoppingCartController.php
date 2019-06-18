@@ -74,9 +74,9 @@ class ShoppingCartController extends Controller
      * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function show(ShoppingCart $shoppingCart)
+    public function show()
     {
-        //
+        return view("shoppingCart.index");
     }
 
     /**
